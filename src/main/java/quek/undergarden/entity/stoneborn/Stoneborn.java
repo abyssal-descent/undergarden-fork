@@ -232,7 +232,8 @@ public class Stoneborn extends Monster implements NeutralMob, Npc, Merchant {
 	}
 
 	protected void populateTradeData() {
-		VillagerTrades.ItemListing[] trades = StonebornTrades.VAGABOND_TRADES.get(1);
+		StonebornTrades.maybe_init();
+		VillagerTrades.ItemListing[] trades = StonebornTrades.TRADES.get(1);
 		if (trades != null) {
 			MerchantOffers merchantoffers = this.getOffers();
 			this.addTrades(merchantoffers, trades, 4);

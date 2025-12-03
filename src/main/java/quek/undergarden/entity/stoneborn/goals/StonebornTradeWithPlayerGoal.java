@@ -17,24 +17,15 @@ public class StonebornTradeWithPlayerGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		if (!this.stoneborn.isAlive()) {
+		var sb = this.stoneborn;
+		if (!sb.isAlive() || sb.isInWater() || !sb.onGround() || sb.hurtMarked)
 			return false;
-		} else if (this.stoneborn.isInWater()) {
+
+		Player player = this.stoneborn.getTradingPlayer();
+		if (player == null || sb.distanceToSqr(player) > 16.0D)
 			return false;
-		} else if (!this.stoneborn.onGround()) {
-			return false;
-		} else if (this.stoneborn.hurtMarked) {
-			return false;
-		} else {
-			Player playerentity = this.stoneborn.getTradingPlayer();
-			if (playerentity == null) {
-				return false;
-			} else if (this.stoneborn.distanceToSqr(playerentity) > 16.0D) {
-				return false;
-			} else {
-				return playerentity.containerMenu != null;
-			}
-		}
+
+		return player.containerMenu != null;
 	}
 
 	@Override
