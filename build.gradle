@@ -27,7 +27,7 @@ if (secretsFile.exists()) {
 version = project.undergarden_version
 group = 'quek.undergarden'
 base {
-    archivesName = 'The_Undergarden-'+project.minecraft_version
+    archivesName = 'undergarden-adfork-'+project.minecraft_version
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
