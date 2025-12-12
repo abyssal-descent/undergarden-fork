@@ -80,15 +80,17 @@ public class Stoneborn extends Monster implements NeutralMob, Npc, Merchant {
 
 	public static AttributeSupplier.Builder registerAttributes() {
 		return Monster.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 50.0D)
-				.add(Attributes.ARMOR, 10.0D)
-				.add(Attributes.ATTACK_DAMAGE, 10.0D)
-				.add(Attributes.MOVEMENT_SPEED, 0.3D)
-				.add(Attributes.KNOCKBACK_RESISTANCE, 0.9D);
+			.add(Attributes.MAX_HEALTH, 50.0D)
+			.add(Attributes.ARMOR, 10.0D)
+			.add(Attributes.ATTACK_DAMAGE, 10.0D)
+			.add(Attributes.MOVEMENT_SPEED, 0.3D)
+			.add(Attributes.KNOCKBACK_RESISTANCE, 0.9D);
 	}
 
 	public static boolean canStonebornSpawn(EntityType<? extends Monster> entity, LevelAccessor level, MobSpawnType mobSpawnType, BlockPos pos, RandomSource random) {
-		return level.getDifficulty() != Difficulty.PEACEFUL && random.nextInt(10) == 0 && checkMobSpawnRules(entity, level, mobSpawnType, pos, random);
+		return level.getDifficulty() != Difficulty.PEACEFUL
+			&& random.nextInt(10) == 0
+			&& checkMobSpawnRules(entity, level, mobSpawnType, pos, random);
 	}
 
 	@Override
@@ -101,12 +103,15 @@ public class Stoneborn extends Monster implements NeutralMob, Npc, Merchant {
 		if (this.isAggressive()) {
 			return UGSoundEvents.STONEBORN_ANGRY.get();
 		}
+
 		if (this.hasCustomer()) {
 			return UGSoundEvents.STONEBORN_SPEAKING.get();
 		}
+
 		if (!this.inUndergarden()) {
 			return UGSoundEvents.STONEBORN_CONFUSED.get();
 		}
+
 		return null;
 	}
 
@@ -131,18 +136,17 @@ public class Stoneborn extends Monster implements NeutralMob, Npc, Merchant {
 
 	@Override
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
-		ItemStack itemstack = player.getItemInHand(hand);
-		if (itemstack.getItem() != UGItems.STONEBORN_SPAWN_EGG.get() && this.isAlive() && !this.hasCustomer() && this.inUndergarden()) {
-			if (!this.getOffers().isEmpty()) {
-				if (!this.level().isClientSide()) {
-					this.setTradingPlayer(player);
-					this.openTradingScreen(player, this.getDisplayName(), 1);
-				}
-			}
-			return InteractionResult.sidedSuccess(this.level().isClientSide());
-		} else {
+		var item = player.getItemInHand(hand).getItem();
+		if (item == UGItems.STONEBORN_SPAWN_EGG.get() || !this.isAlive() || this.hasCustomer() || !this.inUndergarden()) {
 			return super.mobInteract(player, hand);
 		}
+
+		if (!this.getOffers().isEmpty() && !this.level().isClientSide()) {
+			this.setTradingPlayer(player);
+			this.openTradingScreen(player, this.getDisplayName(), 1);
+		}
+
+		return InteractionResult.sidedSuccess(this.level().isClientSide());
 	}
 
 	@Override
@@ -232,12 +236,7 @@ public class Stoneborn extends Monster implements NeutralMob, Npc, Merchant {
 	}
 
 	protected void populateTradeData() {
-		StonebornTrades.maybe_init();
-		VillagerTrades.ItemListing[] trades = StonebornTrades.TRADES.get(1);
-		if (trades != null) {
-			MerchantOffers merchantoffers = this.getOffers();
-			this.addTrades(merchantoffers, trades, 4);
-		}
+		this.addTrades(this.getOffers(), StonebornTrades.trades(), 4);
 	}
 
 	protected void addTrades(MerchantOffers givenMerchantOffers, VillagerTrades.ItemListing[] newTrades, int maxNumbers) {
@@ -262,8 +261,7 @@ public class Stoneborn extends Monster implements NeutralMob, Npc, Merchant {
 	}
 
 	@Override
-	public void overrideOffers(@Nullable MerchantOffers offers) {
-	}
+	public void overrideOffers(@Nullable MerchantOffers offers) { }
 
 	@Override
 	public void notifyTrade(MerchantOffer offer) {
@@ -296,8 +294,7 @@ public class Stoneborn extends Monster implements NeutralMob, Npc, Merchant {
 	}
 
 	@Override
-	public void overrideXp(int xpIn) {
-	}
+	public void overrideXp(int xpIn) { }
 
 	@Override
 	public boolean showProgressBar() {
