@@ -15,11 +15,11 @@ public class StonebornTrade implements VillagerTrades.ItemListing {
 	private final int uses;
 
 	public StonebornTrade(ItemStack input, ItemStack output, int uses) {
-		this(Pair.of(input, Optional.empty()), output, uses);
+		this(new Pair<>(input, Optional.empty()), output, uses);
 	}
 
 	public StonebornTrade(ItemStack input_a, ItemStack input_b, ItemStack output, int uses) {
-		this(Pair.of(input_a, Optional.of(input_b)), output, uses);
+		this(new Pair<>(input_a, Optional.of(input_b)), output, uses);
 	}
 
 	public StonebornTrade(Pair<ItemStack, Optional<ItemStack>> inputs, ItemStack output, int uses) {
@@ -30,8 +30,8 @@ public class StonebornTrade implements VillagerTrades.ItemListing {
 
 	@Override
 	public MerchantOffer getOffer(Entity entity, RandomSource random) {
-		return this.inputs.b
-			.map(b -> new MerchantOffer(this.inputs.a, b, this.output, this.uses, 0, 0))
-			.orElseGet(() -> new MerchantOffer(this.inputs.a, this.output, this.uses, 0, 0));
+		return this.inputs.b()
+			.map(b -> new MerchantOffer(this.inputs.a(), b, this.output, this.uses, 0, 0))
+			.orElseGet(() -> new MerchantOffer(this.inputs.a(), this.output, this.uses, 0, 0));
 	}
 }
