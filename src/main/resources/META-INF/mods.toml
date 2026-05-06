@@ -1,24 +1,33 @@
 modLoader="javafml"
 loaderVersion="[47,)"
-issueTrackerURL="https://github.com/quek04/The-Undergarden/issues"
 license="MIT"
+
 [[mods]]
 modId="undergarden"
 version="${file.jarVersion}"
 displayName="The Undergarden"
 logoFile="logo.png"
 logoBlur=false
-authors="quek"
+authors="quek, slbsh"
 description='''Deep underground, a forgotten land awaits.'''
+
 [[dependencies.undergarden]]
-    modId="forge"
-    mandatory=true
-    versionRange="[47,)"
-    ordering="NONE"
-    side="BOTH"
+	modId="forge"
+	mandatory=true
+	versionRange="[47,)"
+	ordering="NONE"
+	side="BOTH"
+
 [[dependencies.undergarden]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.20,1.21)"
-    ordering="NONE"
-    side="BOTH"
+	modId="minecraft"
+	mandatory=true
+	versionRange="[1.20,1.21)"
+	ordering="NONE"
+	side="BOTH"
+
+[[dependencies.undergarden]]
+	modId="adresources"
+	mandatory=true
+	versionRange="[0,)"
+	ordering="NONE"
+	side="BOTH"
