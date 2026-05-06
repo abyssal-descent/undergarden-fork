@@ -39,6 +39,26 @@ public class StonebornTrades {
 				new ItemStack(UGItems.FORGOTTEN_PICKAXE.get(), 1), 1),
 
 			new StonebornTrade(
+				new ItemStack(UGItems.CLOGGRUM_AXE.get(), 1),
+				new ItemStack(UGItems.FORGOTTEN_INGOT.get(), 1),
+				new ItemStack(UGItems.FORGOTTEN_AXE.get(), 1), 1),
+
+			new StonebornTrade(
+				new ItemStack(UGItems.CLOGGRUM_SHOVEL.get(), 1),
+				new ItemStack(UGItems.FORGOTTEN_INGOT.get(), 1),
+				new ItemStack(UGItems.FORGOTTEN_SHOVEL.get(), 1), 1),
+
+			new StonebornTrade(
+				new ItemStack(UGItems.CLOGGRUM_HOE.get(), 1),
+				new ItemStack(UGItems.FORGOTTEN_INGOT.get(), 1),
+				new ItemStack(UGItems.FORGOTTEN_HOE.get(), 1), 1),
+
+			new StonebornTrade(
+				new ItemStack(UGItems.CLOGGRUM_SWORD.get(), 1),
+				new ItemStack(UGItems.FORGOTTEN_INGOT.get(), 1),
+				new ItemStack(UGItems.FORGOTTEN_SWORD.get(), 1), 1),
+
+			new StonebornTrade(
 				new ItemStack(get_item("adresources", "empty_forgotten_bottle"), 1),
 				new ItemStack(get_item("bosses_of_mass_destruction", "crystal_fruit"), 1),
 				new ItemStack(get_item("adresources", "acid_bottle"), 1), 4)
