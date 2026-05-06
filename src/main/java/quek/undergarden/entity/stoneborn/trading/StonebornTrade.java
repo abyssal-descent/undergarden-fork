@@ -9,6 +9,8 @@ import quek.undergarden.registry.UGItems;
 
 import java.util.Optional;
 
+record Pair<A, B>(A a, B b){}
+
 public class StonebornTrade implements VillagerTrades.ItemListing {
 	private final Pair<ItemStack, Optional<ItemStack>> inputs;
 	private final ItemStack output;
