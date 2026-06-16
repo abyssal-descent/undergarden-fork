@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "C": {
-      "item": "undergarden:cloggrum_ingot"
+      "item": "adhammers:cloggrum_plate"
     },
     "S": {
       "tag": "minecraft:planks"
